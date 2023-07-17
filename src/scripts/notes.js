@@ -249,12 +249,4 @@
 
 // Policz średnią elementów z tablicy
 
-// function calculateAvg(numbers) {
-//     const sum = 0;
-
-//     for (const number of numbers) {
-//         sum += number
-//     }
-// }
-
-// console.log(calculateAvg([1, 2, 3, 4, 5]));
+//
