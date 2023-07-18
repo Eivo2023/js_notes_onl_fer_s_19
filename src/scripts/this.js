@@ -138,3 +138,53 @@ class User1 {
 }
 
 const u5 = new User1('Zbigniew');
+
+
+function magic(data) {
+    // "use strict"; // wyświetli undefined
+    this.data = data;
+    console.log(this);
+}
+
+const context =  {
+    a: 1, b: 2
+}
+
+// magic();
+magic.call(context);
+magic.apply(context);
+const magic2 = magic.bind(context);
+magic2()
+
+const h1Ref = document.querySelector('#title'); // szuka jednej wartości
+
+class Magic{
+    constructor(){
+        this.counter = 0;
+    }
+
+    click(){
+
+        //this - object klasy Magic
+        h1Ref.addEventListener('click', (function() {
+            this.counter++;
+            console.log(this.counter);
+        }).bind(this)) //bind włożył this do addEventListene i używa on tego this
+
+        //this - object klasy Magic
+    }
+}
+
+const m = new Magic();
+m.click()
+
+// jesli nie chcemy mieć lokalnie stosowanego this używamy funkcji strzałkowej - ona nie am this
+
+// h1Ref.addEventListener('click', () => {
+//     this.counter++;
+//     console.log(this.counter);
+// }) //bind włożył this do addEventListene i używa on tego this
+
+// //this - object klasy Magic
+// }
+// }
