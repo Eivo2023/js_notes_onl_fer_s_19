@@ -16,56 +16,57 @@
 //     maxSpeed: 190
 // }
 
-function createAuto(brand, maxSpeed) {
-    return {
-        brand,
-        speed: 0,
-        maxSpeed,
-        engine: false
-    }
+function Auto(brand, maxSpeed) {
+    this.brand = brand;
+    this.speed = 0;
+    this.maxSpeed = maxSpeed;
+    this.engine = false;
 }
 
-const bmw = createAuto('bmw', 140);
-const mercedes = createAuto('mercedes', 190);
 
-function startEngine(car) {
-    if (!car.engine) { //wykrzyknik odwraca wartość
-        car.engine = true;
+Auto.prototype.startEngine = function() {
+    if (!this.engine) { //wykrzyknik odwraca wartość
+        this.engine = true;
         console.log('silnik odpalony')
     } else {
         console.log('silnik już był odpalony')
     }
 }
 
-function stopEngine(car) {
-    if (car.speed === 0) {
-        car.engine = false;
+Auto.prototype.stopEngine = function() {
+    if (this.speed === 0) {
+        this.engine = false;
         console.log('silnik zgaszony')
     } else {
         console.log('zatrzymaj się zanim zgasisz silnik')
     }
 }
 
-function speedUp(car) {
-    if (car.engine) {
-        car.speed = Math.min(car.speed + amount, car.maxSpeed);
-        console.log('Twoja prędkość to: ${car.speed}')
+Auto.prototype.speedUp = function(amount) {
+    if (this.engine) {
+        this.speed = Math.min(this.speed + amount, this.maxSpeed);
+        console.log('Twoja prędkość to: ${this.speed}')
     } else {
         console.log('najpierw odpal silnik')
     }
 }
 
-function slowDown(car) {
-    car.speed = Math.max(car.speed - amount, 0);
-    console.log('Twoja prędkość to: ${car.speed}')
+Auto.prototype.slowDown = function(amount) {
+    this.speed = Math.max(this.speed - amount, 0);
+    console.log('Twoja prędkość to: ${this.speed}')
 }
 
-speedUp(bmw, 200);
-startEngine(bmw);
-speedUp(bmw, 40);
-speedUp(bmw, 40);
-speedUp(bmw, 240);
-stopEngine(bmw);
-slowDown(bmw, 50);
-slowDown(bmw, 250);
-stopEngine(bmw);
+const bmw = new Auto('bmw', 140);
+const mercedes = new Auto('mercedes', 190);
+
+
+
+bmw.speedUp(200);
+bmw.startEngine();
+bmw.speedUp(40);
+bmw.speedUp(40);
+bmw.speedUp(240);
+bmw.stopEngine();
+bmw.slowDown(50);
+bmw.slowDown(250);
+bmw.stopEngine();
